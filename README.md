@@ -2,6 +2,13 @@
 
 Since this is still in development, I haven't changed it to a Dockerfile yet.
 
+Tasks
+- write mock data insertion script
+- write disk tables setup in setup.sql, schedule daily job (https://learn.microsoft.com/en-us/sql/ssms/agent/create-a-job?view=sql-server-ver16)
+
+---
+# Setup
+
 1. Pull and run a SQL Server Docker container, mounting the working directory as a volume. Change the MSSQL_SA_PASSWORD as appropriate and save it. 
 
 Note that your password must be at least eight characters long and contain characters from three of the following four sets: uppercase letters, lowercase letters, base-10 digits, and symbols, or the container will exit automatically.
