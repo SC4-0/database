@@ -138,7 +138,8 @@ BEGIN
         plan_id INT,
         factory_id INT,
         customer_site_group_id INT,
-        allocation_ratio DECIMAL(5,2),
+        min_allocation_ratio DECIMAL(5,2),
+        max_allocation_ratio DECIMAL(5,2),
         min_prod_hours INT
     )
     WITH (MEMORY_OPTIMIZED=ON);
