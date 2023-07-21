@@ -44,7 +44,7 @@ GO
 BEGIN
     CREATE TABLE order_items
     (
-        order_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
+        order_id INT PRIMARY KEY NONCLUSTERED,
         item_id INT,
         quantity INT
     )
@@ -109,7 +109,7 @@ GO
 BEGIN
     CREATE TABLE factory_metrics
     (
-        factory_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
+        factory_id INT PRIMARY KEY NONCLUSTERED,
         daily_order_fulfilment_time INT,
         unutilized_capacity iNT,
         max_available_prod_hr DECIMAL(6,3)
@@ -122,7 +122,7 @@ GO
 BEGIN
     CREATE TABLE factory_production
     (
-        factory_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
+        factory_id INT PRIMARY KEY NONCLUSTERED,
         product_id INT,
         production_rate DECIMAL(5,3)
     )
