@@ -109,10 +109,12 @@ GO
 BEGIN
     CREATE TABLE factory_metrics
     (
-        factory_id INT PRIMARY KEY NONCLUSTERED,
+        factory_id INT,
+        record_date DATE
         daily_order_fulfilment_time INT,
-        unutilized_capacity iNT,
-        max_available_prod_hr DECIMAL(6,3)
+        unutilized_capacity INT,
+        max_available_prod_hr DECIMAL(6,3),
+        CONSTRAINT pk_factory_metrics PRIMARY KEY NONCLUSTERED (factory_id, record_date)
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
