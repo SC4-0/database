@@ -12,6 +12,10 @@ GO
 ALTER DATABASE order_planning ADD FILE (name='order_planning_mod1', filename='/usr/data/order_planning_mod1') TO FILEGROUP order_planning_mod;
 PRINT N'In memory database created.'
 GO
+ALTER DATABASE order_planning SET MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT=ON;
+PRINT N'READ COMMITTED transaction isolation level supported.'
+GO
+
 
 BEGIN
     CREATE TABLE customers
@@ -110,7 +114,7 @@ BEGIN
     CREATE TABLE factory_metrics
     (
         factory_id INT,
-        record_date DATE
+        record_date DATE,
         daily_order_fulfilment_time INT,
         unutilized_capacity INT,
         max_available_prod_hr DECIMAL(6,3),
