@@ -34,10 +34,10 @@ BEGIN
     (
         order_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
         customer_id INT,
-        order_date DATE,
-        manufacturing_date DATE,
-        shipment_date DATE,
-        delivery_date DATE,
+        order_date DATETIME,
+        manufacturing_date DATETIME,
+        shipment_date DATETIME,
+        delivery_date DATETIME,
         assigned_factory_id INT
     )
     WITH (MEMORY_OPTIMIZED=ON);
@@ -48,9 +48,10 @@ GO
 BEGIN
     CREATE TABLE order_items
     (
-        order_id INT PRIMARY KEY NONCLUSTERED,
+        order_id INT,
         item_id INT,
         quantity INT
+        CONSTRAINT pk_order_items PRIMARY KEY NONCLUSTERED (order_id, item_id)
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
@@ -75,9 +76,9 @@ BEGIN
     CREATE TABLE customer_site_groups
     (
         customer_site_group_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
-        cusotmer_site_group_name NVARCHAR(50),
-        latitude DECIMAL(8,6),
-        longitude DECIMAL(8,6),
+        customer_site_group_name NVARCHAR(50),
+        latitude DECIMAL(12,9),
+        longitude DECIMAL(12,9),
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
@@ -102,8 +103,8 @@ BEGIN
     (
         factory_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
         factory_name NVARCHAR(50),
-        latitude DECIMAL(8,6),
-        longitude DECIMAL(8,6),
+        latitude DECIMAL(12,9),
+        longitude DECIMAL(12,9),
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
@@ -116,7 +117,7 @@ BEGIN
         factory_id INT,
         record_date DATE,
         daily_order_fulfilment_time INT,
-        unutilized_capacity INT,
+        unutilized_capacity DECIMAL(6, 3),
         max_available_prod_hr DECIMAL(6,3),
         CONSTRAINT pk_factory_metrics PRIMARY KEY NONCLUSTERED (factory_id, record_date)
     )
@@ -128,9 +129,10 @@ GO
 BEGIN
     CREATE TABLE factory_production
     (
-        factory_id INT PRIMARY KEY NONCLUSTERED,
+        factory_id INT,
         product_id INT,
-        production_rate DECIMAL(5,3)
+        production_rate DECIMAL(5,3),
+        CONSTRAINT pk_factory_production PRIMARY KEY NONCLUSTERED (factory_id, product_id)
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
@@ -146,7 +148,6 @@ BEGIN
         customer_site_group_id INT,
         min_allocation_ratio DECIMAL(5,2),
         max_allocation_ratio DECIMAL(5,2),
-        min_prod_hours INT
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
@@ -159,10 +160,12 @@ BEGIN
         plan_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
         planned_fulfilment_time INT,
         planned_unutilized_capacity INT,
-        plan_generation_date DATE,
+        plan_generation_date DATETIME,
+        plan_category INT, --  1, 2, 3, 4 for plan category e.g. short OFT, higher unutilized prod. capacity --
+        unutilized_capacity_preference DECIMAL(8,1),
         selected BIT,
         autoselected BIT,
-        selection_date DATE
+        selection_date DATETIME
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
@@ -177,6 +180,7 @@ BEGIN
         planned_fulfilment_time INT,
         planned_unutilized_capacity INT,
         planned_date DATE,
+        min_prod_hours INT
         CONSTRAINT pk_planned_factory_targets PRIMARY KEY NONCLUSTERED (factory_id, plan_id)
     )
     WITH (MEMORY_OPTIMIZED=ON);
