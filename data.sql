@@ -6,9 +6,9 @@ insert into customer_site_groups values
 (2, 1.35472, 103.933);
 
 insert into factories values
-(0, 1.27791, 103.623),
-(1, 1.42011, 103.84),
-(2, 1.37418, 104.001);
+(0, 1.27791, 103.623, 10),
+(1, 1.42011, 103.84, 10),
+(2, 1.37418, 104.001, 10);
 
 insert into distances values
 (1, 1, 1),

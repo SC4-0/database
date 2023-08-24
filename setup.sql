@@ -105,6 +105,8 @@ BEGIN
         factory_name NVARCHAR(50),
         latitude DECIMAL(12,9),
         longitude DECIMAL(12,9),
+        production_hours INT,
+
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
