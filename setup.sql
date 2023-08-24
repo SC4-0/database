@@ -116,7 +116,7 @@ BEGIN
     (
         factory_id INT,
         record_date DATE,
-        daily_order_fulfilment_time INT,
+        daily_order_fulfilment_time DECIMAL(6,3),
         unutilized_capacity DECIMAL(6, 3),
         max_available_prod_hr DECIMAL(6,3),
         CONSTRAINT pk_factory_metrics PRIMARY KEY NONCLUSTERED (factory_id, record_date)
@@ -158,8 +158,8 @@ BEGIN
     CREATE TABLE plans
     (
         plan_id INT IDENTITY PRIMARY KEY NONCLUSTERED,
-        planned_fulfilment_time INT,
-        planned_unutilized_capacity INT,
+        planned_fulfilment_time DECIMAL(6,3),
+        planned_unutilized_capacity DECIMAL(6,3),
         plan_generation_date DATETIME,
         plan_category INT, --  1, 2, 3, 4 for plan category e.g. short OFT, higher unutilized prod. capacity --
         unutilized_capacity_preference DECIMAL(8,1),
@@ -177,8 +177,8 @@ BEGIN
     (
         factory_id INT,
         plan_id INT,
-        planned_fulfilment_time INT,
-        planned_unutilized_capacity INT,
+        planned_fulfilment_time DECIMAL(6,3),
+        planned_unutilized_capacity DECIMAL(6,3),
         planned_date DATE,
         min_prod_hours INT
         CONSTRAINT pk_planned_factory_targets PRIMARY KEY NONCLUSTERED (factory_id, plan_id)
