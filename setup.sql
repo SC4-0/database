@@ -118,7 +118,6 @@ BEGIN
         record_date DATE,
         daily_order_fulfilment_time DECIMAL(6,3),
         unutilized_capacity DECIMAL(6, 3),
-        max_available_prod_hr DECIMAL(6,3),
         CONSTRAINT pk_factory_metrics PRIMARY KEY NONCLUSTERED (factory_id, record_date)
     )
     WITH (MEMORY_OPTIMIZED=ON);
