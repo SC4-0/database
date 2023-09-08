@@ -147,8 +147,8 @@ BEGIN
         plan_id INT,
         factory_id INT,
         customer_site_group_id INT,
-        min_allocation_ratio DECIMAL(5,2),
-        max_allocation_ratio DECIMAL(5,2),
+        min_allocation_ratio DECIMAL(10,9),
+        max_allocation_ratio DECIMAL(10,9),
     )
     WITH (MEMORY_OPTIMIZED=ON);
 END;
