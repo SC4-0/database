@@ -1,12 +1,3 @@
-# database
-
-Since this is still in development, I haven't changed it to a Dockerfile yet.
-
-Tasks
-- write mock data insertion script
-- write disk tables setup in setup.sql, schedule daily job (https://learn.microsoft.com/en-us/sql/ssms/agent/create-a-job?view=sql-server-ver16)
-
----
 # Setup
 
 All commands are for Windows, Cmd prompt. Please `cd` into the directory containing the setup.sql file before running the first command, or change the `%cd%` variable to the path of the directory containing the setup.sql file.
@@ -28,4 +19,5 @@ Note that your password must be at least eight characters long and contain chara
 3. Set up the database using the setup script within the mounted working directory.
 
 `/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<your_mssql_sa_password>' -i /home/setup.sql`
+
 `/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<your_mssql_sa_password>' -i /home/data.sql`
