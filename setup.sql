@@ -163,7 +163,7 @@ BEGIN
         planned_unutilized_capacity DECIMAL(6,3),
         plan_generation_date DATETIME,
         plan_category INT, --  1, 2, 3, 4 for plan category e.g. short OFT, higher unutilized prod. capacity --
-        unutilized_capacity_preference DECIMAL(8,1),
+        unutilized_capacity_preference DECIMAL(8,7),
         selected BIT,
         autoselected BIT,
         selection_date DATETIME
